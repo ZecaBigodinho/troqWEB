@@ -1,0 +1,183 @@
+/* public/layout.css */
+
+/* --- Layout do Dashboard Público --- */
+.hero-section {
+    background: var(--hero-gradient);
+    padding: 40px 20px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    /* color: var(--text-color); - Removido daqui, herdado do body */
+}
+.hero-content { max-width: 800px; margin: 0 auto; }
+
+/* --- Layout do Conteúdo Principal (Ofertas) --- */
+.offers-container { padding: 40px; max-width: 1200px; margin: 20px auto; }
+.offers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+
+/* --- Layout de Páginas Internas e Forms --- */
+.page-header { padding: 20px 40px; background-color: var(--header-bg-color); border-bottom: 1px solid var(--border-color); transition: background-color 0.3s ease, border-color 0.3s ease; }
+
+/* Layout da Página de Detalhes da Oferta */
+.offer-detail-page {
+    display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px;
+    max-width: 1100px; margin: 40px auto; padding: 20px;
+    background-color: var(--card-bg-color); border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+@media (max-width: 768px) { .offer-detail-page { grid-template-columns: 1fr; } }
+
+/* Layout do Container de Formulários */
+.form-container {
+    background-color: var(--card-bg-color); padding: 40px; border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); width: 100%; max-width: 500px; /* Reduzido para forms */
+    margin: 5vh auto; transition: background-color 0.3s ease;
+}
+/* Alinhamento para formulários (pode ser ajustado se necessário) */
+.signup-form{
+    text-align: center; /* Centraliza botões inline-block */
+}
+
+
+/* --- Layout do Painel Logado (Home.html) --- */
+.logged-in-header {
+    /* background: var(--header-bg-color); */ /* REMOVIDO */
+    background: var(--hero-gradient); /* ADICIONADO: Aplica o gradiente */
+    padding: 0 40px;
+    /* border-bottom: 1px solid var(--border-color); */ /* REMOVIDO */
+    position: sticky; top: 0; z-index: 100;
+    transition: background 0.3s ease; /* Transição para o background */
+    color: var(--text-color); /* Garante que o texto padrão herde a cor do tema */
+}
+.header-content { display: flex; align-items: center; justify-content: space-between; height: 70px; max-width: 1200px; margin: 0 auto; }
+.header-right { display: flex; align-items: center; gap: 20px; } /* Container para botão de tema e hamburguer */
+
+/* Layout Menu Lateral (Drawer) */
+.side-menu {
+    position: fixed; top: 0; right: -300px; width: 300px; height: 100vh;
+    background-color: var(--card-bg-color); box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1001; transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.3s ease;
+    padding: 80px 20px 20px 20px; display: flex; flex-direction: column;
+}
+.side-menu.open { right: 0; }
+.menu-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4); z-index: 1000;
+    opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.menu-overlay.open { opacity: 1; visibility: visible; }
+
+/* ============================================= */
+/* == VERIFIQUE/ADICIONE ESTAS REGRAS em layout.css == */
+/* ============================================= */
+
+/* --- Layout do Painel Logado (Home.html) --- */
+.logged-in-header {
+    background: var(--header-bg-color); 
+    padding: 0 40px; 
+    border-bottom: 1px solid var(--border-color);
+    position: sticky; 
+    top: 0; 
+    z-index: 100; 
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Controla o alinhamento principal: Logo | Busca | Direita */
+.header-content { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; /* ESSENCIAL para espaçar os itens */
+    height: 70px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+/* Container para agrupar botão de tema e hamburguer */
+.header-right { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+}
+
+
+/* ================================================== */
+/* == VERIFIQUE/ADICIONE ESTAS REGRAS em components.css == */
+/* ================================================== */
+
+/* --- Componentes do Header Logado --- */
+
+.header-logo { 
+    font-size: 1.8em; 
+    font-weight: 700; 
+    color: var(--primary-green); 
+    text-decoration: none; 
+}
+
+/* Barra de busca específica do header logado */
+.header-search { 
+    display: flex; /* Garante que input e button fiquem lado a lado */
+    width: 40%; /* Largura definida */
+    border: 2px solid var(--border-color); 
+    border-radius: 50px; 
+    transition: border-color 0.3s ease;
+    /* Remove margens automáticas que poderiam existir */
+    margin: 0; 
+    background-color: var(--card-bg-color); /* Fundo para visibilidade */
+    box-shadow: none; /* Remove sombra se herdada */
+}
+
+.header-search input { 
+    flex-grow: 1; 
+    border: none; 
+    background: transparent; 
+    padding: 10px 20px; /* Padding interno */
+    font-size: 1em; 
+    outline: none; 
+    font-family: 'Poppins', sans-serif; 
+    color: var(--text-color);
+    border-radius: 50px 0 0 50px; /* Arredonda canto esquerdo */
+}
+
+.header-search button { 
+    border: none; 
+    background-color: var(--button-color); 
+    color: white; 
+    padding: 0 25px; /* Padding horizontal */
+    border-radius: 0 50px 50px 0; /* Arredonda canto direito */
+    cursor: pointer; 
+    font-weight: 600; 
+    font-size: 1em; /* Garante tamanho da fonte */
+    transition: background-color 0.3s ease;
+    /* Remove margens que poderiam existir */
+    margin: 0; 
+}
+.header-search button:hover { 
+    background-color: var(--button-hover-color); 
+}
+
+/* Botão de Tema (já deve existir, mas confirme) */
+.theme-toggle-button {
+    background: none; border: 1px solid var(--border-color); border-radius: 50%;
+    width: 40px; height: 40px; font-size: 1.5em; cursor: pointer;
+    transition: all 0.3s ease; color: var(--text-color);
+    display: flex; align-items: center; justify-content: center;
+}
+.theme-toggle-button:hover { background-color: var(--bg-color); border-color: var(--text-color); }
+
+/* Menu Hambúrguer (já deve existir, mas confirme) */
+.hamburger-menu { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    width: 30px; 
+    height: 22px; 
+    cursor: pointer; 
+}
+.hamburger-menu span { 
+    width: 100%; 
+    height: 3px; 
+    background-color: var(--text-color); 
+    border-radius: 3px; 
+    transition: all 0.3s ease; 
+}

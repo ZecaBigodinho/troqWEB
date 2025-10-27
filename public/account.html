@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta - Troq</title>
+    <link rel="stylesheet" href="variables.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="components.css">
+</head>
+<body>
+    <header class="page-header">
+        <a href="/home.html" class="back-link">&larr; Voltar para o Painel</a>
+        <a href="/logout" class="logout-button" style="float: right;">Sair</a>
+    </header>
+
+    <main class="form-container" style="max-width: 600px;">
+        <form id="account-form" class="signup-form" enctype="multipart/form-data">
+            <h1 class="title">Minha Conta</h1>
+            <p class="subtitle">Atualize suas informações de perfil.</p>
+            <div id="message" class="message"></div>
+
+            <div class="profile-pic-section">
+                <div class="profile-pic-wrapper">
+                    <img src="https://via.placeholder.com/150" alt="Foto de Perfil" id="profile-pic-preview">
+                    <label for="profile-pic-upload" class="profile-pic-label">
+                        <span>Alterar Foto</span>
+                    </label>
+                    <input type="file" id="profile-pic-upload" name="profilePic" accept="image/png, image/jpeg">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="fullname">Nome Completo</label>
+                <input type="text" id="fullname" name="fullname" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <button type="submit" class="signup-button">Salvar Alterações</button>
+        </form>
+
+        <div class="divider"></div>
+
+        <form id="password-form" class="signup-form">
+            <h2 class="title" style="font-size: 1.8em;">Alterar Senha</h2>
+            <div id="password-message" class="message"></div>
+            <div class="input-group">
+                <label for="current-password">Senha Atual</label>
+                <input type="password" id="current-password" name="current-password" required>
+            </div>
+            <div class="input-group">
+                <label for="new-password">Nova Senha</label>
+                <input type="password" id="new-password" name="new-password" required>
+            </div>
+            <button type="submit" class="signup-button" style="background: #777;">Alterar Senha</button>
+        </form>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

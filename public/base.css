@@ -1,0 +1,38 @@
+/* public/base.css */
+
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos Globais do Body */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    line-height: 1.6; /* Melhora a legibilidade */
+}
+
+/* Tipografia Básica (Opcional, pode adicionar mais) */
+h1, h2, h3 {
+    color: var(--text-color);
+    margin-bottom: 0.5em; /* Espaçamento padrão abaixo dos títulos */
+}
+
+p {
+    color: var(--text-muted-color);
+    margin-bottom: 1em; /* Espaçamento padrão abaixo dos parágrafos */
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+}

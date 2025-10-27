@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - App de Troca</title>
+    <link rel="stylesheet" href="variables.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="form-container">
+        <form id="login-form" class="signup-form">
+            <h1 class="title">Bem-vindo(a) de volta!</h1>
+            <p class="subtitle">Que bom te ver por aqui!</p>
+            <div id="message" class="message"></div>
+            <div class="input-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="Sua senha secreta" required>
+            </div>
+            <button type="submit" class="signup-button">Entrar</button>
+            <p class="login-link">
+                Ainda não tem uma conta? <a href="cadastro.html">Cadastre-se!</a>
+            </p>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

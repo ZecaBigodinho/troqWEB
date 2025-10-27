@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Oferta - Troq</title>
+    <link rel="stylesheet" href="variables.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="page-header">
+        <a href="/home.html" class="back-link">&larr; Voltar para o Painel</a>
+        <a href="/logout" class="logout-button" style="float: right;">Sair</a>
+    </header>
+
+    <div class="form-container">
+        <form id="offer-form" class="signup-form" enctype="multipart/form-data">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 class="title">Crie sua Oferta</h1>
+                </div>
+            <p class="subtitle">Descreva o que você quer oferecer, trocar ou procurar!</p>
+            <div id="message" class="message"></div> <div class="input-group">
+                <label for="offer-type">Tipo de Oferta</label>
+                <select id="offer-type" name="offerType" required> <option value="vender">Quero Vender</option>
+                    <option value="trocar">Quero Trocar</option>
+                    <option value="servico">Ofereço Serviço</option>
+                    <option value="comprar">Quero Comprar</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="title">Título da Oferta</label>
+                <input type="text" id="title" name="title" placeholder="Ex: Smartphone usado em bom estado" required>
+            </div>
+
+            <div class="input-group">
+                <label for="description">Descrição (opcional)</label>
+                <textarea id="description" name="description" placeholder="Detalhes do produto, estado de conservação, etc."></textarea>
+            </div>
+
+            <div class="input-group">
+                <label for="phone">Telefone para Contato (opcional)</label>
+                <input type="tel" id="phone" name="phone" placeholder="(XX) XXXXX-XXXX">
+            </div>
+
+            <div class="input-group">
+                <label for="address">Endereço/Localização (opcional)</label>
+                <input type="text" id="address" name="address" placeholder="Bairro, Cidade ou Ponto de Referência">
+            </div>
+            <div class="input-group">
+                <label for="offer-image">Foto da Oferta</label>
+                <small class="form-hint">Use fotos na horizontal (paisagem) para melhor visualização (ex: 4:3).</small>
+                <input type="file" id="offer-image" name="offerImage" accept="image/png, image/jpeg">
+                <div class="image-preview" id="image-preview">
+                    <img src="" alt="Prévia da Imagem" class="image-preview__image">
+                    <span class="image-preview__default-text">Nenhuma imagem selecionada</span>
+                </div>
+            </div>
+            <div class="input-group" style="text-align: center; margin-bottom: 20px;">
+                <a href="/my-offers.html" class="auth-link">Gerenciar minhas ofertas publicadas</a>
+            </div>
+            <button type="submit" class="signup-button">Publicar Oferta</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

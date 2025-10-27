@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Troq</title>
+    
+    <link rel="stylesheet" href="variables.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero-section">
+        <div class="hero-content">
+            <div class="theme-toggle-container" id="theme-toggle-placeholder-public"></div> 
+            <div id="auth-links-container" class="auth-links-corner"></div>
+            <h1>Encontre o que você precisa</h1>
+            <p>Troque, venda ou compre de tudo perto de você!</p>
+            <form id="search-form" class="search-bar">
+                <input type="text" id="search" name="search" placeholder="Busque por 'Bicicleta Caloi'">
+                <button type="submit">Buscar</button>
+            </form>
+            <div class="swiper category-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><a href="#" class="category-item" data-category="vender">Vender</a></div>
+                    <div class="swiper-slide"><a href="#" class="category-item" data-category="trocar">Trocar</a></div>
+                    <div class="swiper-slide"><a href="#" class="category-item" data-category="servico">Serviços</a></div>
+                    <div class="swiper-slide"><a href="#" class="category-item" data-category="comprar">Comprar</a></div>
+                    <div class="swiper-slide"><a href="#" class="category-item" data-category="eletronicos">Eletrônicos</a></div> 
+                    <div class="swiper-slide"><a href="#" class="category-item" data-category="moveis">Móveis</a></div>
+                    <div class="swiper-slide"><a href="#" class="category-item" data-category="vestuario">Vestuário</a></div>
+                     <div class="swiper-slide"><a href="#" class="category-item" data-category="">Todos</a></div> </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </header>
+    <main class="offers-container">
+        <h2 id="offers-title">Ofertas Recentes</h2> <div id="offers-list" class="offers-grid">
+            <p>Carregando ofertas...</p>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

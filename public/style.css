@@ -1,0 +1,348 @@
+/* =================================== */
+/* ==== RESET BÁSICO E GLOBAIS ===== */
+/* =================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- Variáveis de Cor --- */
+:root {
+    /* Tema Claro (Padrão) */
+    --bg-color: #f7f7f7;
+    --card-bg-color: #fff;
+    --text-color: #333;
+    --text-muted-color: #666;
+    --header-bg-color: #fff;
+    --border-color: #e0e0e0;
+    --hero-gradient: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); /* Verde/Azul Suave */
+    --primary-green: #84fab0;
+    --primary-blue: #8fd3f4;
+    --button-color: var(--primary-green);
+    --button-hover-color: #6cde9c;
+    --link-color: var(--primary-green);
+    --link-hover-color: var(--primary-blue);
+    --placeholder-bg: #e0e0e0;
+}
+
+body.dark-theme {
+    /* Tema Escuro */
+    --bg-color: #1a1a1a;
+    --card-bg-color: #2c2c2c;
+    --text-color: #e0e0e0;
+    --text-muted-color: #aaa;
+    --header-bg-color: #252525;
+    --border-color: #444;
+    --hero-gradient: linear-gradient(120deg, #1f4037 0%, #237a57 100%); /* Gradiente verde escuro */
+    --placeholder-bg: #444;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* =================================== */
+/* ===== LAYOUT DO DASHBOARD PÚBLICO ===== */
+/* =================================== */
+
+.hero-section {
+    background: var(--hero-gradient);
+    padding: 40px 20px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    color: var(--text-color); /* Ajuste para contraste no gradiente escuro */
+}
+.hero-content { max-width: 800px; margin: 0 auto; }
+.hero-section h1 { font-size: 3em; font-weight: 700; color: inherit; } /* Herdando cor */
+.hero-section p { font-size: 1.2em; color: inherit; margin-bottom: 30px; opacity: 0.9;} /* Herdando cor */
+
+/* Links de Autenticação */
+.auth-links-corner {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex; gap: 15px; align-items: center; z-index: 10;
+}
+.auth-links-corner a, .auth-link {
+    text-decoration: none;
+    color: var(--link-color); /* Usando variável de link */
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+.auth-links-corner a:hover, .auth-link:hover { color: var(--link-hover-color); }
+.welcome-message { font-weight: 600; color: var(--text-color); }
+
+/* Barra de Busca */
+.search-bar {
+    display: flex; max-width: 600px; margin: 0 auto 30px auto;
+    border-radius: 50px; background: var(--card-bg-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.search-bar input {
+    flex-grow: 1; border: none; background: transparent; padding: 15px 25px;
+    font-size: 1em; outline: none; font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+}
+.search-bar button {
+    border: none; background-color: var(--button-color); color: white;
+    padding: 15px 30px; border-radius: 50px; cursor: pointer;
+    font-size: 1em; font-weight: 600; transition: background-color 0.3s ease;
+}
+.search-bar button:hover { background-color: var(--button-hover-color); }
+
+/* Swiper de Categorias */
+.category-swiper { width: 100%; height: auto; padding: 10px 0; }
+.category-swiper .swiper-slide { width: auto; }
+.category-item {
+    display: inline-block; padding: 8px 16px; border: 1px solid var(--border-color);
+    border-radius: 30px; background-color: var(--card-bg-color); opacity: 0.9;
+    color: var(--text-muted-color); text-decoration: none; font-size: 0.9em; transition: all 0.3s ease;
+}
+.category-item:hover {
+    background-color: var(--card-bg-color); border-color: var(--button-color); color: var(--button-color);
+    opacity: 1;
+}
+.category-swiper .swiper-button-next,
+.category-swiper .swiper-button-prev { color: var(--button-color); --swiper-navigation-size: 25px; }
+
+/* =================================== */
+/* ===== CONTEÚDO PRINCIPAL (OFERTAS) ===== */
+/* =================================== */
+.offers-container { padding: 40px; max-width: 1200px; margin: 20px auto; }
+.offers-container h2 { font-size: 2em; font-weight: 700; color: var(--text-color); margin-bottom: 20px; text-align: center; }
+.offers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.offer-card-link { text-decoration: none; }
+.offer-card {
+    background-color: var(--card-bg-color); border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08); padding: 20px;
+    display: flex; flex-direction: column; height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+.offer-card:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12); }
+.offer-card h3 { font-size: 1.4em; color: var(--text-color); margin-bottom: 10px; }
+.offer-card p { color: var(--text-muted-color); }
+.offer-card .offer-type {
+    align-self: flex-start; padding: 5px 10px; border-radius: 20px;
+    font-size: 0.8em; font-weight: 600; margin-bottom: 15px; text-transform: uppercase;
+}
+/* Cores (ajustar se necessário para contraste no dark mode) */
+.offer-type-vender { background-color: #d4edda; color: #155724; }
+.offer-type-trocar { background-color: #cce5ff; color: #004085; }
+.offer-type-servico { background-color: #e2d9f3; color: #443266; }
+.offer-type-comprar { background-color: #fff3cd; color: #856404; }
+.offer-card .author { font-size: 0.9em; color: var(--text-muted-color); margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border-color); }
+
+/* Placeholders */
+.offer-card.placeholder { animation: pulse 1.5s infinite ease-in-out; }
+.placeholder-img { height: 150px; width: 100%; background-color: var(--placeholder-bg); border-radius: 10px; margin-bottom: 15px; }
+.placeholder-text { height: 20px; width: 80%; background-color: var(--placeholder-bg); border-radius: 5px; margin-bottom: 10px; }
+.placeholder-text.short { width: 50%; }
+@keyframes pulse {
+    0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; }
+}
+
+
+/* =================================== */
+/* ==== PÁGINAS INTERNAS E FORMS ==== */
+/* =================================== */
+.page-header { padding: 20px 40px; background-color: var(--header-bg-color); border-bottom: 1px solid var(--border-color); transition: background-color 0.3s ease, border-color 0.3s ease; }
+.back-link { color: var(--text-color); text-decoration: none; font-weight: 600; }
+
+.offer-detail-page {
+    display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px;
+    max-width: 1100px; margin: 40px auto; padding: 20px;
+    background-color: var(--card-bg-color); border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+.offer-image-section img { width: 100%; max-height: 500px; object-fit: cover; border-radius: 10px; border: 1px solid var(--border-color); }
+.offer-image-section .no-image { width: 100%; height: 300px; display: flex; align-items: center; justify-content: center; background-color: var(--bg-color); color: var(--text-muted-color); border-radius: 10px; font-weight: 600; }
+.offer-info-section .offer-type { display: inline-block; margin-bottom: 15px; }
+.offer-info-section h1 { font-size: 2em; font-weight: 700; margin-bottom: 20px; color: var(--text-color); }
+.offer-info-section .description { font-size: 1.1em; line-height: 1.6; color: var(--text-color); margin-bottom: 30px; }
+.seller-info-box { background-color: var(--bg-color); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; transition: background-color 0.3s ease, border-color 0.3s ease; }
+.seller-info-box h3 { font-size: 1.2em; font-weight: 600; color: var(--text-color); margin-bottom: 15px; }
+.seller-info-box p { margin-bottom: 10px; color: var(--text-muted-color); }
+.seller-info-box strong { color: var(--text-color); }
+.contact-button { display: block; background: var(--button-color); color: white; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 20px; transition: background-color 0.3s ease; }
+.contact-button:hover { background-color: var(--button-hover-color); }
+@media (max-width: 768px) { .offer-detail-page { grid-template-columns: 1fr; } }
+
+.form-container {
+    background-color: var(--card-bg-color); padding: 40px; border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); width: 100%; max-width: 500px;
+    margin: 5vh auto; transition: background-color 0.3s ease;
+}
+.form-container .title { font-size: 2.2em; font-weight: 700; color: var(--text-color); margin-bottom: 10px; text-align: center; }
+.form-container .subtitle { text-align: center; color: var(--text-muted-color); margin-bottom: 20px; }
+.input-group { margin-bottom: 20px; display: flex; flex-direction: column; }
+.input-group label { font-weight: 600; color: var(--text-muted-color); margin-bottom: 8px; }
+.input-group input, .input-group select, .input-group textarea {
+    width: 100%; padding: 14px; border: 2px solid var(--border-color); border-radius: 10px;
+    font-size: 1em; font-family: 'Poppins', sans-serif; transition: all 0.3s ease;
+    background-color: var(--bg-color); color: var(--text-color);
+}
+.input-group input:focus, .input-group select:focus, .input-group textarea:focus {
+    outline: none; border-color: var(--primary-green); box-shadow: 0 0 10px rgba(132, 250, 176, 0.5);
+}
+.input-group textarea { resize: vertical; min-height: 100px; }
+.login-link { text-align: center; margin-top: 20px; color: var(--text-muted-color); }
+.login-link a { color: var(--primary-green); font-weight: 600; text-decoration: none; }
+
+/* Página de Conta */
+.profile-pic-section { display: flex; justify-content: center; margin-bottom: 30px; }
+.profile-pic-wrapper { position: relative; width: 150px; height: 150px; }
+#profile-pic-preview { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-color); }
+#profile-pic-upload { display: none; }
+.profile-pic-label {
+    position: absolute; bottom: 0; right: 0; background: var(--primary-green); color: white;
+    padding: 8px 12px; border-radius: 20px; cursor: pointer; font-size: 0.9em; font-weight: 600;
+    transition: all 0.3s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.profile-pic-label:hover { transform: scale(1.05); }
+.divider { height: 2px; background-color: var(--border-color); margin: 40px 0; }
+
+/* Preview Imagem Oferta */
+.image-preview {
+    width: 100%; height: 200px; border: 2px dashed var(--border-color); margin-top: 15px;
+    display: flex; align-items: center; justify-content: center; position: relative;
+    overflow: hidden; background-color: var(--bg-color);
+}
+.image-preview__image { display: none; width: 100%; height: 100%; object-fit: cover; }
+.image-preview__default-text { color: var(--text-muted-color); font-weight: 600; }
+
+/* =================================== */
+/* ==== PAINEL LOGADO (HOME.HTML) ==== */
+/* =================================== */
+.logged-in-header {
+    background: var(--header-bg-color); padding: 0 40px; border-bottom: 1px solid var(--border-color);
+    position: sticky; top: 0; z-index: 100; transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.header-content { display: flex; align-items: center; justify-content: space-between; height: 70px; max-width: 1200px; margin: 0 auto; }
+.header-logo { font-size: 1.8em; font-weight: 700; color: var(--primary-green); text-decoration: none; }
+.header-search { display: flex; width: 40%; border: 2px solid var(--border-color); border-radius: 50px; }
+.header-search input { flex-grow: 1; border: none; background: transparent; padding: 10px 20px; font-size: 1em; outline: none; font-family: 'Poppins', sans-serif; color: var(--text-color); }
+.header-search button { border: none; background-color: var(--button-color); color: white; padding: 0 25px; border-radius: 0 50px 50px 0; cursor: pointer; font-weight: 600; transition: background-color 0.3s ease; }
+.header-search button:hover { background-color: var(--button-hover-color); }
+.header-right { display: flex; align-items: center; gap: 20px; }
+
+/* Menu Hambúrguer */
+.hamburger-menu { display: flex; flex-direction: column; justify-content: space-between; width: 30px; height: 22px; cursor: pointer; }
+.hamburger-menu span { width: 100%; height: 3px; background-color: var(--text-color); border-radius: 3px; transition: all 0.3s ease; }
+
+/* Menu Lateral (Drawer) */
+.side-menu {
+    position: fixed; top: 0; right: -300px; width: 300px; height: 100vh;
+    background-color: var(--card-bg-color); box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1001; transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.3s ease;
+    padding: 80px 20px 20px 20px; display: flex; flex-direction: column;
+}
+.side-menu.open { right: 0; }
+.side-menu-link {
+    font-size: 1.2em; font-weight: 600; color: var(--text-color); text-decoration: none;
+    padding: 15px; border-radius: 10px; transition: background-color 0.3s ease, color 0.3s ease;
+}
+.side-menu-link:hover { background-color: var(--bg-color); }
+.side-menu-link.logout { margin-top: auto; color: #ff6b6b; }
+.side-menu-link.logout:hover { background-color: rgba(255, 107, 107, 0.1); }
+
+.menu-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4); z-index: 1000;
+    opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.menu-overlay.open { opacity: 1; visibility: visible; }
+
+/* =================================== */
+/* ====== BOTÕES E MENSAGENS ====== */
+/* =================================== */
+.signup-form{
+    text-align: center;
+}
+
+.signup-button {
+    background: var(--gradient-background); /* Linha original restaurada */
+    color: #333; /* Texto escuro */
+    font-weight: 600;
+    display: inline-block;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    width: auto;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.signup-button:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); }
+
+.logout-button {
+    display: inline-block; padding: 8px 16px; background-color: transparent;
+    border: 2px solid #ff6b6b; color: #ff6b6b; text-decoration: none;
+    border-radius: 8px; font-weight: 600; transition: all 0.3s ease;
+}
+.logout-button:hover { background-color: #ff6b6b; color: white; }
+
+.card-actions { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border-color); text-align: right; }
+.delete-btn { background-color: #ff6b6b; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; }
+.delete-btn:hover { background-color: #e05252; }
+
+/* Botão de Tema */
+.theme-toggle-container { position: absolute; top: 20px; left: 20px; z-index: 10; }
+.theme-toggle-button {
+    background: none; border: 1px solid var(--border-color); border-radius: 50%;
+    width: 40px; height: 40px; font-size: 1.5em; cursor: pointer;
+    transition: all 0.3s ease; color: var(--text-color);
+    display: flex; align-items: center; justify-content: center;
+}
+.theme-toggle-button:hover { background-color: var(--bg-color); border-color: var(--text-color); }
+
+.message { padding: 10px; margin-bottom: 20px; border-radius: 8px; text-align: center; font-weight: 600; display: none; }
+.message.success { background-color: rgba(132, 250, 176, 0.2); color: #155724; border: 1px solid #c3e6cb; display: block; }
+body.dark-theme .message.success { color: #c3e6cb; } /* Ajuste para dark mode */
+.message.error { background-color: rgba(255, 107, 107, 0.1); color: #721c24; border: 1px solid #f5c6cb; display: block; }
+body.dark-theme .message.error { color: #f5c6cb; } /* Ajuste para dark mode */
+
+/* public/style.css - Adicionar no final */
+
+.offer-card-image {
+    width: 100%;
+    height: 180px; /* Altura fixa para a imagem no card */
+    object-fit: cover; /* Cobre a área sem distorcer */
+    border-radius: 10px 10px 0 0; /* Arredonda só os cantos superiores */
+    display: block; /* Remove espaço extra abaixo da imagem */
+    background-color: var(--placeholder-bg); /* Cor de fundo para placeholders */
+}
+
+.offer-card-content {
+    padding-top: 15px; /* Adiciona espaço entre a imagem e o conteúdo */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Faz o conteúdo ocupar o espaço restante */
+}
+
+/* Ajuste no autor para garantir que fique no final */
+.offer-card-content .author {
+     margin-top: auto; /* Empurra para baixo */
+     padding-top: 10px;
+     border-top: 1px solid var(--border-color);
+}
+/* Ajuste nas ações para garantir que fiquem no final */
+.offer-card-content .card-actions {
+     margin-top: auto; /* Empurra para baixo */
+     padding-top: 10px;
+     border-top: 1px solid var(--border-color);
+}
+
+/* Garante que o placeholder dentro do card tenha a altura correta */
+.offer-card .placeholder-img {
+    height: 180px;
+    margin-bottom: 0; /* Remove margem inferior padrão do placeholder geral */
+    border-radius: 10px 10px 0 0;
+}

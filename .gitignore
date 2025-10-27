@@ -1,0 +1,12 @@
+# Dependências do Node (pasta gigante e desnecessária)
+node_modules/
+
+# Arquivo de variáveis de ambiente (Contém suas senhas!)
+.env
+
+# Banco de dados local (Não deve ir para produção)
+database.json
+
+# Arquivos de sistema operacional (Opcional, mas boa prática)
+.DS_Store
+npm-debug.log

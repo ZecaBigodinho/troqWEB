@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Painel - Troq</title>
+    <link rel="stylesheet" href="variables.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="side-menu" id="side-menu">
+        <a href="/home.html" class="side-menu-link">Meu Painel</a>
+        <a href="/create-offer.html" class="side-menu-link">Criar Nova Oferta</a>
+        <a href="/my-offers.html" class="side-menu-link">Minhas Ofertas</a>
+        <a href="/account.html" class="side-menu-link">Minha Conta</a>
+        <a href="/logout" class="side-menu-link logout">Sair</a>
+    </nav>
+    <div class="menu-overlay" id="menu-overlay"></div>
+
+    <header class="logged-in-header">
+        <div class="header-content">
+            <a href="/dashboard.html" class="header-logo">TROQ</a>
+            <form class="header-search" id="search-form-logged-in">
+                <input type="text" id="search-input-logged-in" placeholder="Buscar ofertas...">
+                <button type="submit">Buscar</button>
+            </form>
+            <div class="header-right">
+                <div class="header-avatar" id="header-avatar-container">
+                    <img src="https://via.placeholder.com/40" alt="Avatar" id="header-avatar-img"> </div>
+                <button class="theme-toggle-button" id="theme-toggle">🌙</button>
+                <div class="hamburger-menu" id="hamburger-menu">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="offers-container">
+        <h2 id="offers-title">Ofertas Recentes / Recomendações</h2>
+        <div id="offers-list" class="offers-grid">
+            <div class="offer-card placeholder"> ... </div>
+             <div class="offer-card placeholder"> ... </div>
+             <div class="offer-card placeholder"> ... </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

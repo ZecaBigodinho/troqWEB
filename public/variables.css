@@ -1,0 +1,47 @@
+/* public/variables.css */
+:root {
+    /* Tema Claro (Padrão) */
+    --bg-color: #f7f7f7;
+    --dark-green-solid: #1f4037;
+    --dark-green-gradient: linear-gradient(120deg, #1f4037 0%, #237a57 100%);
+    --card-bg-color: #fff;
+    --text-color: #333;
+    --text-muted-color: #666;
+    --header-bg-color: #fff;
+    --border-color: #e0e0e0;
+    --hero-gradient: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); /* Verde/Azul Suave */
+    --primary-green: #84fab0;
+    --primary-blue: #007bff;
+    --button-color: var(--primary-green);
+    --button-hover-color: #218838;
+    --link-color: #0d6efd;
+    --link-hover-color: #0a58ca;
+    --placeholder-bg: #e0e0e0;
+    --danger-color: #ff6b6b;
+    --danger-hover-color: #e05252;
+    --danger-bg-color: rgba(255, 107, 107, 0.1);
+    --success-bg-color: rgba(132, 250, 176, 0.2);
+    --success-border-color: #c3e6cb;
+    --success-text-color: #155724;
+    --error-bg-color: rgba(255, 107, 107, 0.1);
+    --error-border-color: #f5c6cb;
+    --error-text-color: #721c24;
+}
+
+body.dark-theme {
+    /* Tema Escuro */
+    --bg-color: #1a1a1a;
+    --card-bg-color: #2c2c2c;
+    --text-color: #e0e0e0;
+    --text-muted-color: #aaa;
+    --header-bg-color: #252525;
+    --border-color: #444;
+    --hero-gradient: linear-gradient(120deg, #1f4037 0%, #237a57 100%); /* Gradiente verde escuro */
+    --placeholder-bg: #444;
+    --link-color: var(--primary-green);
+    --link-hover-color: var(--primary-blue);
+    --dark-green-gradient: linear-gradient(120deg, #1f4037 0%, #237a57 100%);
+    /* Ajustes de cor para contraste no tema escuro */
+    --success-text-color: #c3e6cb;
+    --error-text-color: #f5c6cb;
+}
