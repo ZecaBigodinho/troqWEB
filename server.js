@@ -257,7 +257,7 @@ app.get('/api/users', isAuthenticated, async (req, res) => {
 // --- ROTAS PARA SERVIR PÁGINAS HTML ---
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'dashboard.html')));
 app.get('/dashboard.html', (req, res) => res.sendFile(path.join(__dirname, 'public', 'dashboard.html')));
-app.get('/index.html', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+app.get('cadastro.html', (req, res) => res.sendFile(path.join(__dirname, 'public', 'cadastro.html')));
 app.get('/login.html', (req, res) => res.sendFile(path.join(__dirname, 'public', 'login.html')));
 app.get('/offer.html', (req, res) => res.sendFile(path.join(__dirname, 'public', 'offer.html')));
 app.get('/create-offer.html', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, 'public', 'create-offer.html')));
