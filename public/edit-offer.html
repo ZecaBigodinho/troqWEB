@@ -25,7 +25,7 @@
                 <select id="offer-type" name="offerType" required>
                     <option value="vender">Quero Vender</option>
                     <option value="trocar">Quero Trocar</option>
-                    <option value="servico">Ofereço Serviço</option>
+                    <option value="serviço">Ofereço Serviço</option>
                     <option value="comprar">Quero Comprar</option>
                 </select>
             </div>
@@ -35,6 +35,18 @@
                 <input type="text" id="title" name="title" required>
             </div>
 
+            <div class="input-group">
+                <label for="category">Categoria da Oferta</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled selected>Selecione uma categoria...</option>
+                    <option value="eletronicos">Eletrônicos</option>
+                    <option value="moveis">Móveis</option>
+                    <option value="vestuario">Vestuário</option>
+                    <option value="animais">Animais</option>
+                    <option value="veiculos">Veículos</option>
+                    <option value="outros">Outros</option>
+                </select>
+            </div>
             <div class="input-group">
                 <label for="description">Descrição (opcional)</label>
                 <textarea id="description" name="description"></textarea>

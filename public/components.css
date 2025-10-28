@@ -137,7 +137,7 @@ body.dark-theme .header-search {
 
 .offer-type-vender { background-color: #d4edda; color: #155724; }
 .offer-type-trocar { background-color: #cce5ff; color: #004085; }
-.offer-type-servico { background-color: #e2d9f3; color: #443266; }
+.offer-type-serviço { background-color: #e2d9f3; color: #443266; }
 .offer-type-comprar { background-color: #fff3cd; color: #856404; }
 .offer-card .author { font-size: 0.9em; color: var(--text-muted-color); margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border-color); }
 .offer-card .card-actions { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border-color); text-align: right; display: flex; justify-content: flex-end; align-items: center; }

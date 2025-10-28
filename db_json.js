@@ -132,7 +132,9 @@ module.exports = {
     },
 
     // --- Funções de Oferta ---
-    async createOffer({ userId, offerType, title, description, imageUrl, phone, address }) {
+    
+    // === ALTERADO ===
+    async createOffer({ userId, offerType, title, category, description, imageUrl, phone, address }) {
         const db = await readData();
         // Cria um novo objeto de oferta com ID aleatório e data atual
         const newOffer = {
@@ -140,6 +142,7 @@ module.exports = {
             user_id: userId,
             offer_type: offerType,
             title,
+            category: category, // Adicionado
             description,
             image_url: imageUrl, // Salva a URL da imagem (pode ser null)
             phone,              // Salva telefone
@@ -150,10 +153,12 @@ module.exports = {
         await writeData(db); // Salva no arquivo
         return { id: newOffer.id }; // Retorna apenas o ID
     },
-    // Função atualizada para busca E filtro por categoria
+    
+    // === ALTERADO ===
     async getAllOffers(searchTerm, category) {
         const db = await readData();
         let filteredOffers = db.offers; // Começa com todas as ofertas
+        const offerTypes = ['vender', 'trocar', 'serviço', 'comprar'];
 
         // Filtra por termo de busca (se fornecido)
         if (searchTerm) {
@@ -166,11 +171,16 @@ module.exports = {
             );
         }
 
-        // Filtra por categoria (se fornecida)
+        // FILTRO INTELIGENTE
         if (category) {
              console.log(`Filtrando JSON com categoria: '${category}'`);
-             // Compara o offer_type com a categoria fornecida
-             filteredOffers = filteredOffers.filter(offer => offer.offer_type === category);
+             if (offerTypes.includes(category)) {
+                // Filtra pela coluna offer_type
+                filteredOffers = filteredOffers.filter(offer => offer.offer_type === category);
+             } else {
+                // Filtra pela nova coluna category
+                filteredOffers = filteredOffers.filter(offer => offer.category === category);
+             }
         }
 
         // Mapeia os resultados para adicionar o nome do autor (simulando JOIN)
@@ -179,11 +189,14 @@ module.exports = {
             // Retorna um objeto com os dados da oferta e o nome do autor
             return {
                 id: offer.id, offer_type: offer.offer_type, title: offer.title, description: offer.description,
-                created_at: offer.created_at, image_url: offer.image_url, phone: offer.phone, address: offer.address, // Inclui phone/address
+                created_at: offer.created_at, image_url: offer.image_url, phone: offer.phone, address: offer.address, 
+                category: offer.category, // Adicionado
                 author_name: author ? author.fullname : 'Usuário Desconhecido' // Nome ou fallback
             };
         }).sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); // Ordena pelas mais recentes
     },
+    
+    // === ALTERADO ===
     async getOfferById(id) {
         const db = await readData();
         const offer = db.offers.find(o => o.id === id); // Encontra a oferta pelo ID
@@ -192,7 +205,8 @@ module.exports = {
         // Retorna dados da oferta e do autor
         return {
             id: offer.id, offer_type: offer.offer_type, title: offer.title, description: offer.description,
-            created_at: offer.created_at, image_url: offer.image_url, phone: offer.phone, address: offer.address, // Inclui phone/address
+            created_at: offer.created_at, image_url: offer.image_url, phone: offer.phone, address: offer.address,
+            category: offer.category, // Adicionado
             author_name: author ? author.fullname : 'Usuário Desconhecido',
             author_email: author ? author.email : 'email@desconhecido.com' // Email para contato
         };
@@ -204,6 +218,8 @@ module.exports = {
         const offer = db.offers.find(o => o.id === offerId && o.user_id === userId);
         return offer; // Retorna a oferta ou undefined
     },
+    
+    // === ALTERADO ===
     async getMyOffers(userId) {
         const db = await readData();
         // Filtra as ofertas pelo user_id
@@ -211,11 +227,14 @@ module.exports = {
             // Mapeia para retornar os campos necessários, incluindo phone/address
             .map(offer => ({
                 id: offer.id, offer_type: offer.offer_type, title: offer.title, description: offer.description,
-                created_at: offer.created_at, image_url: offer.image_url, phone: offer.phone, address: offer.address
+                created_at: offer.created_at, image_url: offer.image_url, phone: offer.phone, address: offer.address,
+                category: offer.category // Adicionado
             }))
             .sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); // Ordena
     },
-    async updateOffer(offerId, userId, { offerType, title, description, imageUrl, phone, address }) {
+    
+    // === ALTERADO ===
+    async updateOffer(offerId, userId, { offerType, title, category, description, imageUrl, phone, address }) {
         const db = await readData();
         // Encontra o índice da oferta a ser atualizada
         const offerIndex = db.offers.findIndex(o => o.id === offerId);
@@ -226,6 +245,7 @@ module.exports = {
         // Atualiza os campos da oferta no array
         db.offers[offerIndex].offer_type = offerType;
         db.offers[offerIndex].title = title;
+        db.offers[offerIndex].category = category; // Adicionado
         db.offers[offerIndex].description = description;
         db.offers[offerIndex].image_url = imageUrl; // Atualiza a imagem (pode ser null)
         db.offers[offerIndex].phone = phone;       // Atualiza telefone
@@ -234,6 +254,7 @@ module.exports = {
         await writeData(db); // Salva as alterações
         return db.offers[offerIndex]; // Retorna a oferta atualizada
     },
+    
     async deleteOffer(offerId, userId) {
         const db = await readData();
         const offerIndex = db.offers.findIndex(o => o.id === offerId);

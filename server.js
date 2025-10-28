@@ -85,9 +85,10 @@ app.get('/logout', (req, res) => {
 // Cria uma nova oferta (COM VALIDAÇÃO DE TELEFONE)
 app.post('/api/offers', isAuthenticated, upload.single('offerImage'), async (req, res) => {
     try {
-        const { offerType, title, description, phone, address } = req.body;
+        // === ALTERAÇÃO AQUI ===
+        const { offerType, title, category, description, phone, address } = req.body;
         const userId = req.session.user.id;
-        if (!offerType || !title) { return res.status(400).json({ message: 'O tipo e o título da oferta são obrigatórios.' }); }
+        if (!offerType || !title || !category) { return res.status(400).json({ message: 'O tipo, título e categoria da oferta são obrigatórios.' }); }
         // VALIDAÇÃO TELEFONE (se preenchido)
         if (phone && phone.trim() !== '' && !phoneRegex.test(phone)) {
              return res.status(400).json({ message: 'Formato de telefone inválido. Use (XX) XXXXX-XXXX.' });
@@ -95,7 +96,8 @@ app.post('/api/offers', isAuthenticated, upload.single('offerImage'), async (req
 
         const saveOfferToDb = async (imageUrl) => {
             try {
-                const newOffer = await db.createOffer({ userId, offerType, title, description, imageUrl, phone, address });
+                // === ALTERAÇÃO AQUI ===
+                const newOffer = await db.createOffer({ userId, offerType, title, category, description, imageUrl, phone, address });
                 res.status(201).json({ message: 'Oferta publicada com sucesso!', offerId: newOffer.id });
             } catch (dbError) { console.error("Erro ao salvar oferta no DB:", dbError); res.status(500).json({ message: 'Erro interno ao salvar os dados da oferta.' }); }
         };
@@ -205,15 +207,17 @@ app.get('/api/offers/:id/edit', isAuthenticated, async (req, res) => { try { con
 app.put('/api/offers/:id', isAuthenticated, upload.single('offerImage'), async (req, res) => {
     try {
         const offerId = req.params.id; const userId = req.session.user.id;
-        const { offerType, title, description, phone, address } = req.body;
+        // === ALTERAÇÃO AQUI ===
+        const { offerType, title, category, description, phone, address } = req.body;
         let imageUrl = req.body.currentImageUrl || null;
-        if (!offerType || !title) { return res.status(400).json({ message: 'O tipo e o título da oferta são obrigatórios.' }); }
+        if (!offerType || !title || !category) { return res.status(400).json({ message: 'O tipo, título e categoria da oferta são obrigatórios.' }); }
          // VALIDAÇÃO TELEFONE
         if (phone && phone.trim() !== '' && !phoneRegex.test(phone)) { return res.status(400).json({ message: 'Formato de telefone inválido. Use (XX) XXXXX-XXXX.' }); }
 
         const updateDatabase = async (newImageUrl) => {
             try {
-                const updatedOffer = await db.updateOffer(offerId, userId, { offerType, title, description, imageUrl: newImageUrl, phone, address });
+                // === ALTERAÇÃO AQUI ===
+                const updatedOffer = await db.updateOffer(offerId, userId, { offerType, title, category, description, imageUrl: newImageUrl, phone, address });
                 res.status(200).json({ message: 'Oferta atualizada com sucesso!', offer: updatedOffer });
             } catch (dbError) { console.error("Erro ao atualizar oferta no DB:", dbError); if (dbError.message.includes('Acesso negado')) { return res.status(403).json({ message: 'Acesso negado.'}); } res.status(500).json({ message: 'Erro interno ao salvar as alterações.' }); }
         };
@@ -257,7 +261,7 @@ app.get('/api/users', isAuthenticated, async (req, res) => {
 // --- ROTAS PARA SERVIR PÁGINAS HTML ---
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'dashboard.html')));
 app.get('/dashboard.html', (req, res) => res.sendFile(path.join(__dirname, 'public', 'dashboard.html')));
-app.get('cadastro.html', (req, res) => res.sendFile(path.join(__dirname, 'public', 'cadastro.html')));
+app.get('/cadastro.html', (req, res) => res.sendFile(path.join(__dirname, 'public', 'cadastro.html')));
 app.get('/login.html', (req, res) => res.sendFile(path.join(__dirname, 'public', 'login.html')));
 app.get('/offer.html', (req, res) => res.sendFile(path.join(__dirname, 'public', 'offer.html')));
 app.get('/create-offer.html', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, 'public', 'create-offer.html')));
